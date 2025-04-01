@@ -7,17 +7,17 @@ import { Pagination } from './components/Pagination';
 const items = getNumbers(1, 42).map(n => `Item ${n}`);
 
 export const App: React.FC = () => {
-  const [pageSelector, setPageSelector] = useState('5');
+  const [pageSelector, setPageSelector] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const firstItem = (currentPage - 1) * +pageSelector + 1;
-  const lastItem = Math.min(currentPage * +pageSelector, items.length);
+  const firstItem = (currentPage - 1) * pageSelector + 1;
+  const lastItem = Math.min(currentPage * pageSelector, items.length);
 
-  const startIndex = (currentPage - 1) * +pageSelector;
-  const visibleItems = items.slice(startIndex, startIndex + +pageSelector);
+  const startIndex = (currentPage - 1) * pageSelector;
+  const visibleItems = items.slice(startIndex, startIndex + pageSelector);
 
   const handlerPageSelectorChange = event => {
-    setPageSelector(event.target.value);
+    setPageSelector(Number(event.target.value));
     setCurrentPage(1);
   };
 
